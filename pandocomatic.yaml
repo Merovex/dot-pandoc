@@ -1,0 +1,67 @@
+### Pandocomatic Configuration ###
+# Important: YAML configuration files uses spaces for indentation to define structure
+# Path values are normally relative to the Pandoc data dir: /Users/MYNAME/.pandoc
+# so csl/apa.csl will be searched as /Users/MYNAME/.pandoc/csl/apa.csl
+# see https://heerdebeer.org/Software/markdown/pandocomatic/#specifying-paths
+templates:
+  # --lua-filter #{@templates_dir}latex.lua
+  refs:
+    setup: [] #runs a general script to rename or copy files before anything is run
+    preprocessors: [] #runs a script on the markdown file itself
+    pandoc:
+      lua-filter:
+        - "filters/verkilo.lua"
+      standalone: true #create complete document
+      # filter: "pandoc-citeproc" #run filter to process citations
+      bibliography: "core.bib" #bibtex file, default search path will be your pandoc data-dir
+      csl: "csl/apa.csl" #CSL style file, in the csl/ folder of pandoc data-dir
+    metadata:
+      notes-after-punctuation: false
+      link-citations: true
+    postprocessors: [] #runs on the output file (unless it is binary like docx)
+    cleanup: [] #general cleanup script
+  latex:
+    pandoc:
+      template: "templates/verkilo-paperback.tex" #customised pandoc template
+      toc: true
+      toc-depth: 4
+      base-header-level: 2
+    metadata:
+      mainfont: "Georgia"
+      sansfont: "Source Sans Pro"
+      monofont: "Fira Code"
+      documentclass: "memoir"
+      fontsize: "10pt"
+  raw-latex:
+    extends: ["refs", "latex"] #we can inherit from other templates
+    pandoc:
+      from: markdown
+      to: latex
+  paperback:
+    extends: ["refs", "latex"] #we can inherit from other templates
+    pandoc:
+      pdf-engine: xelatex
+      from: markdown
+      to: pdf
+  #-----------------------------------------------------------------------------
+  manuscript:
+    extends: ["refs"] #we can inherit from other templates
+    pandoc:
+      from: markdown
+      to: docx
+      reference-doc: "templates/verkilo-manuscript.docx"
+      toc: false
+  #-----------------------------------------------------------------------------
+  epub:
+    pandoc:
+      from: markdown
+      to: html5
+      standalone: true
+      number-sections: true
+      section-divs: true
+      template: "templates/epub.html"
+      css: "templates/epub.css"
+      self-contained: true
+      toc: true
+      toc-depth: 4
+      base-header-level: 1

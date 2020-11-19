@@ -1,0 +1,33 @@
+% Start Fixing Georgia Numbering
+\usepackage{fontspec}
+
+\setmainfont{Georgia}
+\newfontfamily{\digits}{Source Serif Pro}
+
+\XeTeXinterchartokenstate=1
+\chardef\CharNormal=0
+\makeatletter
+% Test for old and new versions of the latex kernel
+\ifx\e@alloc@intercharclass@top\@undefined
+    \chardef\CharBound=255
+\else
+    \chardef\CharBound=\e@alloc@intercharclass@top
+\fi
+\makeatother
+\newXeTeXintercharclass\CharNumbers
+\XeTeXcharclass`0=\CharNumbers
+\XeTeXcharclass`1=\CharNumbers
+\XeTeXcharclass`2=\CharNumbers
+\XeTeXcharclass`3=\CharNumbers
+\XeTeXcharclass`4=\CharNumbers
+\XeTeXcharclass`5=\CharNumbers
+\XeTeXcharclass`6=\CharNumbers
+\XeTeXcharclass`7=\CharNumbers
+\XeTeXcharclass`8=\CharNumbers
+\XeTeXcharclass`9=\CharNumbers
+
+\XeTeXinterchartoks\CharNormal\CharNumbers={\begingroup\digits}
+\XeTeXinterchartoks\CharBound\CharNumbers={\begingroup\digits}
+\XeTeXinterchartoks\CharNumbers\CharNormal={\endgroup}
+\XeTeXinterchartoks\CharNumbers\CharBound={\endgroup}
+% End Georgia Numbering

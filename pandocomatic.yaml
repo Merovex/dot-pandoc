@@ -31,11 +31,8 @@ templates:
       variables:
         index: true
     metadata:
-      mainfont: "Georgia"
-      sansfont: "IM FELL English"
-      monofont: "Fira Code"
       documentclass: "memoir"
-      fontsize: "10pt"
+      # fontsize: "10pt"
   raw-latex:
     extends: ["refs", "latex"] #we can inherit from other templates
     pandoc:

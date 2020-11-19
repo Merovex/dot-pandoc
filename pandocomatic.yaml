@@ -4,16 +4,15 @@
 # so csl/apa.csl will be searched as /Users/MYNAME/.pandoc/csl/apa.csl
 # see https://heerdebeer.org/Software/markdown/pandocomatic/#specifying-paths
 templates:
-  # --lua-filter #{@templates_dir}latex.lua
   refs:
-    setup: [] #runs a general script to rename or copy files before anything is run
+    setup: [] #runs a script to rename or copy files before anything is run
     preprocessors: [] #runs a script on the markdown file itself
     pandoc:
       lua-filter:
         - "filters/verkilo.lua"
       standalone: true #create complete document
       # filter: "pandoc-citeproc" #run filter to process citations
-      bibliography: "core.bib" #bibtex file, default search path will be your pandoc data-dir
+      bibliography: "core.bib" #bibtex file, default search is pandoc data-dir
       csl: "csl/apa.csl" #CSL style file, in the csl/ folder of pandoc data-dir
     metadata:
       notes-after-punctuation: false
@@ -25,10 +24,15 @@ templates:
       template: "templates/verkilo-paperback.tex" #customised pandoc template
       toc: true
       toc-depth: 4
-      base-header-level: 2
+      base-header-level: 1
+      include-in-header:
+        - templates/georgia-digits.tex
+        - templates/unnumbered-memoir-chapter.tex
+      variables:
+        index: true
     metadata:
       mainfont: "Georgia"
-      sansfont: "Source Sans Pro"
+      sansfont: "IM FELL English"
       monofont: "Fira Code"
       documentclass: "memoir"
       fontsize: "10pt"
@@ -43,7 +47,6 @@ templates:
       pdf-engine: xelatex
       from: markdown
       to: pdf
-  #-----------------------------------------------------------------------------
   manuscript:
     extends: ["refs"] #we can inherit from other templates
     pandoc:
@@ -51,17 +54,25 @@ templates:
       to: docx
       reference-doc: "templates/verkilo-manuscript.docx"
       toc: false
-  #-----------------------------------------------------------------------------
-  epub:
+  html-refs:
     pandoc:
-      from: markdown
-      to: html5
       standalone: true
       number-sections: true
       section-divs: true
       template: "templates/epub.html"
       css: "templates/epub.css"
       self-contained: true
+      html-q-tags: true
       toc: true
-      toc-depth: 4
+      toc-depth: 2
       base-header-level: 1
+  html:
+    extends: ["html-refs"]
+    pandoc:
+      from: markdown
+      to: html5
+  epub:
+    extends: ["html-refs"]
+    pandoc:
+      from: markdown
+      to: epub

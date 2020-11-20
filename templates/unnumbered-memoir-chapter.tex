@@ -1,7 +1,17 @@
+
+
+
+% $if(chaptertitlecolor)$
+  % \definecolor{chaptercolor}{RGB}{$chaptertitlecolor$}
+% $else$
+  \definecolor{chaptercolor}{RGB}{102,93,98}
+% $endif$
+
+% \definecolor{chaptercolor}{RGB}{30,30,30}
 \makechapterstyle{MerovexPress}{%
 	\renewcommand{\chapnamefont}{\normalfont\bfseries\huge}
 	\renewcommand{\chapnumfont}{\normalfont\bfseries\huge}
-	\renewcommand{\chaptitlefont}{\normalfont\sffamily\huge\bfseries}
+	\renewcommand{\chaptitlefont}{\normalfont\sffamily\huge\bfseries\color{chaptercolor}}
 	\renewcommand{\printchaptername}{}
 	\renewcommand{\chapternamenum}{ }
 	\renewcommand{\printchapternum}{}

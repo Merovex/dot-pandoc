@@ -25,6 +25,7 @@ templates:
       toc: true
       toc-depth: 4
       base-header-level: 1
+      dpi: 300
       include-in-header:
         - templates/georgia-digits.tex
         - templates/unnumbered-memoir-chapter.tex

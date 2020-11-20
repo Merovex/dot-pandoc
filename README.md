@@ -1,1 +1,1 @@
-# dot-pandoc
+# Pandoc Defaults

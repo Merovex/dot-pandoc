@@ -6,7 +6,7 @@
   "editor.mouseWheelZoom": false,
   "editor.tabCompletion": "on",
   "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
-  "editor.fontSize": 18,
+  "editor.fontSize": 16,
   "editor.fontLigatures": true,
   "editor.fontWeight": "400",
   "editor.suggest.statusBar.visible": true,

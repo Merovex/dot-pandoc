@@ -293,7 +293,7 @@ $if(fancybreak)$
 $if(fancybreakcolor)$
   \definecolor{fancybreakcolor}{RGB}{$fancybreakcolor$}
 $else$
-  \definecolor{fancybreakcolor}{RGB}{93,98,100}
+  \definecolor{fancybreakcolor}{RGB}{215,215,217}
 $endif$
 \usepackage{fontawesome5}
 \renewcommand{\pfbreakdisplay}{
@@ -516,9 +516,9 @@ $endif$
   $if(reservation)$\par\noindent $reservation$\newline$endif$
 
   $for(isbn)$
-    \par\noindent ISBN $isbn$\newline
+    \par\noindent ISBN: $isbn$\newline
   $endfor$
-
+  
   \footnotesize
   $if(disclaimer)$\par\noindent $disclaimer$\newline$endif$
 
